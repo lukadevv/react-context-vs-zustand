@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AbstractApp } from "../templates/AbstractApp";
+import { App } from "../templates/App";
 import { ReactAPIContext } from "../../contexts/react-api.context";
 import { ReactAPIProvider } from "../../providers/react-api.provider";
 
-export function MainReactContext() {
+export function ReactContextApp() {
   return (
     <ReactAPIProvider>
       <Body />
@@ -14,5 +14,5 @@ export function MainReactContext() {
 function Body() {
   const { fontSize, theme, user } = useContext(ReactAPIContext);
 
-  return <AbstractApp fontSize={fontSize} theme={theme} user={user} />;
+  return <App fontSize={fontSize} theme={theme} user={user} />;
 }

@@ -1,17 +1,24 @@
 import { useMemo, useState } from "react";
 import { ReactAPIContext } from "../contexts/react-api.context";
 import type { ReactAppContextType } from "../types/react-api-context.type";
+import { CONSTS_defaultReadContextValue } from "../consts/default-context-value.const";
 
 export function ReactAPIProvider({ children }: React.PropsWithChildren) {
-  const [fontSize, setFontSize] = useState<ReactAppContextType["fontSize"]>(0);
-  const [name, setName] =
-    useState<ReactAppContextType["user"]["name"]>("John Doe");
-  const [avatar, setAvatar] =
-    useState<ReactAppContextType["user"]["avatar"]>("");
-  const [background, setBackground] =
-    useState<ReactAppContextType["theme"]["background"]>("#fffff");
-  const [text, setTextColor] =
-    useState<ReactAppContextType["theme"]["text"]>("#00000");
+  const [fontSize, setFontSize] = useState<ReactAppContextType["fontSize"]>(
+    CONSTS_defaultReadContextValue.fontSize
+  );
+  const [name, setName] = useState<ReactAppContextType["user"]["name"]>(
+    CONSTS_defaultReadContextValue.user.name
+  );
+  const [avatar, setAvatar] = useState<ReactAppContextType["user"]["avatar"]>(
+    CONSTS_defaultReadContextValue.user.avatar
+  );
+  const [background, setBackground] = useState<
+    ReactAppContextType["theme"]["background"]
+  >(CONSTS_defaultReadContextValue.theme.background);
+  const [text, setTextColor] = useState<ReactAppContextType["theme"]["text"]>(
+    CONSTS_defaultReadContextValue.theme.text
+  );
 
   const value = useMemo<ReactAppContextType>(
     () => ({
