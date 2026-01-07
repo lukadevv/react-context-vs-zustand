@@ -12,29 +12,9 @@ export type AppReadContextType = {
     background: HexColor;
     text: HexColor;
   };
-
   user: {
     name: string;
     avatar: Avatar;
   };
-
   fontSize: number;
-};
-
-export type ReactAppContextType = AppReadContextType & {
-  setBackground: React.Dispatch<
-    React.SetStateAction<AppReadContextType["theme"]["background"]>
-  >;
-  setTextColor: React.Dispatch<
-    React.SetStateAction<AppReadContextType["theme"]["text"]>
-  >;
-  setName: React.Dispatch<
-    React.SetStateAction<AppReadContextType["user"]["name"]>
-  >;
-  setAvatar: React.Dispatch<
-    React.SetStateAction<AppReadContextType["user"]["avatar"]>
-  >;
-  setFontSize: React.Dispatch<
-    React.SetStateAction<AppReadContextType["fontSize"]>
-  >;
 };
