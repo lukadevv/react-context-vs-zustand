@@ -1,5 +1,15 @@
 type HexColor = `#${string}`;
-export type Avatar = "";
+export type Avatar =
+  | "fa-user"
+  | "fa-house"
+  | "fa-alarm-clock"
+  | "fa-truck"
+  | "fa-calendar"
+  | "fa-hand"
+  | "fa-trophy"
+  | "fa-suitcase"
+  | "fa-web-awesome"
+  | "fa-bolt";
 
 /**
  * Main Context

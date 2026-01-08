@@ -7,7 +7,7 @@ export const CONSTS_defaultReadContextValue: AppReadContextType = {
     text: "#00000",
   },
   user: {
-    avatar: "",
+    avatar: "fa-user",
     name: "John Doe",
   },
 };

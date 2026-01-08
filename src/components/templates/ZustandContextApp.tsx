@@ -1,4 +1,4 @@
-import { App } from "../templates/App";
+import { App } from "./App";
 import { STORE_zustand } from "../../stores/zustand.store";
 
 export function ZustandContextApp() {

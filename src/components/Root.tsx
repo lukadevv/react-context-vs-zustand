@@ -1,6 +1,6 @@
 import { Layout } from "./Layout";
-import { ReactContextApp } from "./organisms/ReactContextApp";
-import { ZustandContextApp } from "./organisms/ZustandContextApp";
+import { ReactContextApp } from "./templates/ReactContextApp";
+import { ZustandContextApp } from "./templates/ZustandContextApp";
 
 export default function Root() {
   return (
