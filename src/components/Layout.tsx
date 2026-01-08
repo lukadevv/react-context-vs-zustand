@@ -13,7 +13,7 @@ export function Layout({
         </h1>
         <p className="mt-8">Description</p>
       </section>
-      <section className="flex flex-wrap w-full gap-2 border bg-black/50 p-2 rounded-sm">
+      <section className="flex w-full max-[760px]:flex-wrap gap-3 border bg-black/50 p-2 rounded-sm">
         <WrappedApp name="React Context">{reactChildren}</WrappedApp>
         <WrappedApp name="Zustand">{zustandChildren}</WrappedApp>
       </section>
@@ -26,11 +26,11 @@ function WrappedApp({
   children,
 }: React.PropsWithChildren<{ name: string }>) {
   return (
-    <div className="w-full border rounded-sm app relative">
+    <div className="w-full border rounded-sm app relative bg-black">
       <p className="text-2xl text-center font-black bg-black/85 py-2 rounded-t-sm border-b">
         {name}
       </p>
-      <div className="p-2 rounded-b-sm min-h-200">{children}</div>
+      <div className="p-2 rounded-b-sm">{children}</div>
     </div>
   );
 }

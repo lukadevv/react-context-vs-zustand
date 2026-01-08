@@ -15,7 +15,7 @@ export function SettingsButton({
   return (
     <button
       className={cn(
-        "flex items-center justify-center bg-black p-1.25 rounded-sm w-9 h-9 border",
+        "flex items-center justify-center bg-black/60 p-1.25 rounded-sm w-9 h-9 border",
         !open &&
           "cursor-pointer hover:opacity-85 hover:scale-105 transition-all "
       )}

@@ -44,7 +44,18 @@ function SettingColor({
   return (
     <div className="bg-black/50 p-4 rounded-2xl border border-white/0 hover:border-white">
       <p className="pb-4 mb-2 text-lg font-bold">{title}</p>
-      <SketchPicker onChange={(color) => setColor(color.hex)} color={color} />
+      <SketchPicker
+        styles={{
+          default: {
+            picker: {
+              backgroundColor: "lightgray",
+              color: "white",
+            },
+          },
+        }}
+        onChange={(color) => setColor(color.hex)}
+        color={color}
+      />
     </div>
   );
 }
