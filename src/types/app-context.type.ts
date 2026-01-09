@@ -28,3 +28,11 @@ export type AppReadContextType = {
   };
   fontSize: number;
 };
+
+export type AppContextType = AppReadContextType & {
+  setBackground: (value: AppReadContextType["theme"]["background"]) => void;
+  setTextColor: (value: AppReadContextType["theme"]["text"]) => void;
+  setName: (value: AppReadContextType["user"]["name"]) => void;
+  setAvatar: (value: AppReadContextType["user"]["avatar"]) => void;
+  setFontSize: (value: AppReadContextType["fontSize"]) => void;
+};

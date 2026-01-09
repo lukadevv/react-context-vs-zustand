@@ -1,38 +1,39 @@
+import React from "react";
 import { SettingsButton } from "./SettingsButton";
 import { SketchPicker, type Color } from "react-color";
+import { useAppStateSelector } from "../../hooks/useAppState";
 
-export function ThemeButton({
-  background,
-  text,
-}: {
-  background: {
-    color: Color;
-    setColor: (color: Color) => void;
-  };
-  text: {
-    color: Color;
-    setColor: (color: Color) => void;
-  };
-}) {
+export function ThemeButton() {
+  const background = useAppStateSelector((s) => s.theme.background);
+  const text = useAppStateSelector((s) => s.theme.text);
+  const setBackground = useAppStateSelector((s) => s.setBackground);
+  const setTextColor = useAppStateSelector((s) => s.setTextColor);
+
   return (
     <SettingsButton title="Theme Settings" icon="fa-brush">
       <section className="flex justify-evenly items-center bg-black/50 rounded-2xl p-4 border">
         <SettingColor
           title="Background"
-          color={background.color}
-          setColor={background.setColor}
+          color={background}
+          setColor={(color) =>
+            setBackground(color as Parameters<typeof setBackground>[0])
+          }
         />
         <SettingColor
           title="Text"
-          color={text.color}
-          setColor={text.setColor}
+          color={text}
+          setColor={(color) =>
+            setTextColor(color as Parameters<typeof setTextColor>[0])
+          }
         />
       </section>
     </SettingsButton>
   );
 }
 
-function SettingColor({
+const SettingColor = React.memo(LocalSettingColor);
+
+function LocalSettingColor({
   title,
   color,
   setColor,

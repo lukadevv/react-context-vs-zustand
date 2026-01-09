@@ -1,12 +1,14 @@
 import { useMemo } from "react";
-import type { AppReadContextType } from "../../types/app-context.type";
 import { cn } from "../../utilities/cn";
+import { useAppStateSelector } from "../../hooks/useAppState";
 
-export function Content({
-  user: { name, avatar },
-  theme,
-  fontSize,
-}: AppReadContextType) {
+export function Content() {
+  const fontSize = useAppStateSelector((s) => s.fontSize);
+  const name = useAppStateSelector((s) => s.user.name);
+  const avatar = useAppStateSelector((s) => s.user.avatar);
+  const background = useAppStateSelector((s) => s.theme.background);
+  const text = useAppStateSelector((s) => s.theme.text);
+
   const fontSizeClassName = useMemo(() => {
     switch (fontSize) {
       case 4:
@@ -89,7 +91,7 @@ export function Content({
   return (
     <article
       style={{
-        backgroundColor: theme.background,
+        backgroundColor: background,
       }}
       className={cn(
         "h-155 overflow-y-auto rounded-sm p-2 border",
@@ -98,7 +100,7 @@ export function Content({
     >
       <p
         style={{
-          color: theme.text,
+          color: text,
         }}
       >
         Hello <span className="text-blue-400 font-bold">{name}</span>!
@@ -117,7 +119,7 @@ export function Content({
           fontSizeClassName
         )}
         style={{
-          color: theme.text,
+          color: text,
         }}
       >
         <span className="block">

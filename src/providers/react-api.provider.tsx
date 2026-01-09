@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { ReactAPIContext } from "../contexts/react-api.context";
 import type { ReactAppContextType } from "../types/react-api-context.type";
 import { CONSTS_defaultReadContextValue } from "../consts/default-context-value.const";
+import { AppStateHookContext } from "../contexts/app-hook.context";
+import { useAppStateFromReactContext } from "../hooks/useAppStateFromReactContext";
 
 export function ReactAPIProvider({ children }: React.PropsWithChildren) {
   const [fontSize, setFontSize] = useState<ReactAppContextType["fontSize"]>(
@@ -41,7 +43,9 @@ export function ReactAPIProvider({ children }: React.PropsWithChildren) {
   );
   return (
     <ReactAPIContext.Provider value={value}>
-      {children}
+      <AppStateHookContext.Provider value={useAppStateFromReactContext}>
+        {children}
+      </AppStateHookContext.Provider>
     </ReactAPIContext.Provider>
   );
 }

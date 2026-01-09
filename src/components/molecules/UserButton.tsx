@@ -1,18 +1,15 @@
-import type { AppReadContextType, Avatar } from "../../types/app-context.type";
+import React from "react";
+import type { Avatar } from "../../types/app-context.type";
 import { cn } from "../../utilities/cn";
 import { SettingsButton } from "./SettingsButton";
+import { useAppStateSelector } from "../../hooks/useAppState";
 
-export function UserButton({
-  name,
-  avatar,
-  setAvatar,
-  setName,
-}: {
-  name: AppReadContextType["user"]["name"];
-  avatar: AppReadContextType["user"]["avatar"];
-  setName: (name: AppReadContextType["user"]["name"]) => void;
-  setAvatar: (name: AppReadContextType["user"]["avatar"]) => void;
-}) {
+export function UserButton() {
+  const name = useAppStateSelector((s) => s.user.name);
+  const avatar = useAppStateSelector((s) => s.user.avatar);
+  const setName = useAppStateSelector((s) => s.setName);
+  const setAvatar = useAppStateSelector((s) => s.setAvatar);
+
   return (
     <SettingsButton title="User Settings" icon="fa-user">
       <section className="flex flex-col items-start justify-start gap-4 bg-black/50 rounded-2xl p-4 border">
@@ -80,7 +77,9 @@ export function UserButton({
   );
 }
 
-function IconButton({
+const IconButton = React.memo(LocalIconButton);
+
+function LocalIconButton({
   avatar,
   selected,
   setAvatar,
