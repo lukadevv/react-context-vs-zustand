@@ -4,6 +4,8 @@ import { Content } from "../organisms/Content";
 import { useAppStateSelector } from "../../hooks/useAppState";
 
 export function App() {
+  console.log("TODO: APP");
+
   return (
     <>
       <Header />
@@ -14,6 +16,8 @@ export function App() {
 
 function Header() {
   const background = useAppStateSelector((s) => s.theme.background);
+
+  console.log("TODO: HEADER");
 
   return (
     <header
