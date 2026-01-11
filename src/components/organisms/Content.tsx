@@ -1,14 +1,20 @@
 import { useMemo } from "react";
 import { cn } from "../../utilities/cn";
-import { useAppStateSelector } from "../../hooks/useAppState";
+import type { AppContextType } from "../../types/app-context.type";
 
-export function Content() {
-  const fontSize = useAppStateSelector((s) => s.fontSize);
-  const name = useAppStateSelector((s) => s.user.name);
-  const avatar = useAppStateSelector((s) => s.user.avatar);
-  const background = useAppStateSelector((s) => s.theme.background);
-  const text = useAppStateSelector((s) => s.theme.text);
-
+export function Content({
+  avatar,
+  background,
+  name,
+  text,
+  fontSize,
+}: {
+  name: AppContextType["user"]["name"];
+  avatar: AppContextType["user"]["avatar"];
+  background: AppContextType["theme"]["background"];
+  text: AppContextType["theme"]["text"];
+  fontSize: AppContextType["fontSize"];
+}) {
   const fontSizeClassName = useMemo(() => {
     switch (fontSize) {
       case 4:

@@ -1,7 +1,11 @@
-import { FontButton } from "../molecules/FontButton";
-import { ThemeButton } from "../molecules/ThemeButton";
-import { UserButton } from "../molecules/UserButton";
+import { FontButton } from "../molecules/buttons/FontButton";
+import { ThemeButton } from "../molecules/buttons/ThemeButton";
+import { UserButton } from "../molecules/buttons/UserButton";
 
+// TODO: Remove this, use adapters
+// TODO: Remove this, use adapters
+// TODO: Remove this, use adapters
+// TODO: Remove this, use adapters
 export function TopBar() {
   return (
     <nav className="flex gap-2 justify-end items-center">
