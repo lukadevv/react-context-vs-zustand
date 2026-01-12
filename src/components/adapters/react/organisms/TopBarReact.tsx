@@ -1,9 +1,12 @@
+import React from "react";
 import { TopBar } from "../../../organisms/TopBar";
 import { FontButtonReact } from "../molecules/buttons/FontButtonReact";
 import { ThemeButtonReact } from "../molecules/buttons/ThemeButtonReact";
 import { UserButtonReact } from "../molecules/buttons/UserButtonReact";
 
-export function TopBarReact() {
+export const TopBarReact = React.memo(LocalTopBarReact);
+
+function LocalTopBarReact() {
   return (
     <TopBar
       fontButton={<FontButtonReact />}

@@ -5,7 +5,9 @@ import type {
   AppReadContextType,
 } from "../../types/app-context.type";
 
-export function ThemeControl({
+export const ThemeControl = React.memo(LocalThemeControl);
+
+function LocalThemeControl({
   text,
   background,
   setBackground,

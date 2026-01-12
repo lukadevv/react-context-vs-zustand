@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
+import React from "react";
 
-export function TopBar({
+export const TopBar = React.memo(LocalTopBar);
+
+function LocalTopBar({
   fontButton,
   themeButton,
   userButton,
