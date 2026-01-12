@@ -1,32 +1,16 @@
 import "../../styles/app.css";
-import { TopBar } from "../organisms/TopBar";
-import { Content } from "../organisms/Content";
-import { useAppStateSelector } from "../../hooks/useAppState";
 
-export function App() {
-  console.log("TODO: APP");
-
+export function App({
+  header,
+  content,
+}: {
+  header: React.ReactNode;
+  content: React.ReactNode;
+}) {
   return (
     <>
-      <Header />
-      <Content />
+      {header}
+      {content}
     </>
-  );
-}
-
-function Header() {
-  const background = useAppStateSelector((s) => s.theme.background);
-
-  console.log("TODO: HEADER");
-
-  return (
-    <header
-      className="mb-2 p-1.5 rounded-sm border"
-      style={{
-        backgroundColor: background,
-      }}
-    >
-      <TopBar />
-    </header>
   );
 }

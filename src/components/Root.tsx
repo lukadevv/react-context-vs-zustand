@@ -1,12 +1,9 @@
+import { AppReact } from "./adapters/react/templates/AppReact";
+import { AppZustand } from "./adapters/zustand/templates/AppZustand";
 import { Layout } from "./Layout";
-import { ReactContextApp } from "./templates/ReactContextApp";
-import { ZustandContextApp } from "./templates/ZustandContextApp";
 
 export default function Root() {
   return (
-    <Layout
-      reactChildren={<ReactContextApp />}
-      zustandChildren={<ZustandContextApp />}
-    />
+    <Layout reactChildren={<AppReact />} zustandChildren={<AppZustand />} />
   );
 }

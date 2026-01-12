@@ -1,5 +1,5 @@
-import { STORE_zustand } from "../../../stores/zustand.store";
-import { ThemeControl } from "../../molecules/ThemeControl";
+import { STORE_zustand } from "../../../../stores/zustand.store";
+import { ThemeControl } from "../../../molecules/ThemeControl";
 
 export function ThemeControlZustand() {
   const background = STORE_zustand((s) => s.theme.background);

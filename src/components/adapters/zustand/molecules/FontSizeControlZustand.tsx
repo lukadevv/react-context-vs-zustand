@@ -1,5 +1,5 @@
-import { STORE_zustand } from "../../../stores/zustand.store";
-import { FontSizeControl } from "../../molecules/FontSizeControl";
+import { STORE_zustand } from "../../../../stores/zustand.store";
+import { FontSizeControl } from "../../../molecules/FontSizeControl";
 
 export function FontSizeControlZustand() {
   const fontSize = STORE_zustand((s) => s.fontSize);

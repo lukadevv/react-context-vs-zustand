@@ -1,5 +1,5 @@
-import { useReactContextState } from "../../../hooks/useReactContextState";
-import { ThemeControl } from "../../molecules/ThemeControl";
+import { useReactContextState } from "../../../../hooks/useReactContextState";
+import { ThemeControl } from "../../../molecules/ThemeControl";
 
 export function ThemeControlReact() {
   const {

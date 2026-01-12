@@ -1,17 +1,19 @@
-import { FontButton } from "../molecules/buttons/FontButton";
-import { ThemeButton } from "../molecules/buttons/ThemeButton";
-import { UserButton } from "../molecules/buttons/UserButton";
+import type { ReactNode } from "react";
 
-// TODO: Remove this, use adapters
-// TODO: Remove this, use adapters
-// TODO: Remove this, use adapters
-// TODO: Remove this, use adapters
-export function TopBar() {
+export function TopBar({
+  fontButton,
+  themeButton,
+  userButton,
+}: {
+  themeButton: ReactNode;
+  userButton: ReactNode;
+  fontButton: ReactNode;
+}) {
   return (
     <nav className="flex gap-2 justify-end items-center">
-      <ThemeButton />
-      <UserButton />
-      <FontButton />
+      {themeButton}
+      {userButton}
+      {fontButton}
     </nav>
   );
 }
