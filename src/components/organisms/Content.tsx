@@ -1,6 +1,6 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { cn } from "../../utilities/cn";
-import type { AppContextType } from "../../types/app-context.type";
+import type { AppContextType, Avatar } from "../../types/app-context.type";
 
 export function Content({
   avatar,
@@ -111,14 +111,7 @@ export function Content({
       >
         Hello <span className="text-blue-400 font-bold">{name}</span>!
       </p>
-      <div className="w-full flex items-center justify-center pt-2">
-        <div
-          key={avatar}
-          className="hover:scale-120 transition-transform cursor-not-allowed flex items-center justify-center w-12.5 h-12.5 bg-black/40 rounded-xl border"
-        >
-          <i className={cn("fa-solid text-2xl", avatar)} />
-        </div>
-      </div>
+      <Avatar avatar={avatar} />
       <p
         className={cn(
           "text-sm leading-relaxed space-y-5 pt-4",
@@ -158,5 +151,20 @@ export function Content({
         </span>
       </p>
     </article>
+  );
+}
+
+const Avatar = React.memo(LocalAvatar);
+
+function LocalAvatar({ avatar }: { avatar: Avatar }) {
+  return (
+    <div className="w-full flex items-center justify-center py-2">
+      <div
+        key={avatar}
+        className="hover:scale-120 transition-transform cursor-not-allowed flex items-center justify-center w-12.5 h-12.5 bg-black/40 rounded-xl border"
+      >
+        <i className={cn("fa-solid text-2xl", avatar)} />
+      </div>
+    </div>
   );
 }

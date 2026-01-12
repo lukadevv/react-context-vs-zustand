@@ -6,7 +6,7 @@ import { HeaderReact } from "../organisms/HeaderReact";
 export function AppReact() {
   return (
     <ReactAPIProvider>
-      <App content={<ContentReact />} header={<HeaderReact />} />;
+      <App content={<ContentReact />} header={<HeaderReact />} />
     </ReactAPIProvider>
   );
 }
