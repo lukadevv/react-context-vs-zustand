@@ -19,7 +19,7 @@ function LocalThemeControl({
   setTextColor: AppContextType["setTextColor"];
 }) {
   return (
-    <section className="flex justify-evenly items-center bg-black/50 rounded-2xl p-4 border">
+    <section className="flex justify-evenly items-center gap-2 bg-black/50 p-4 flex-wrap overflow-y-scroll h-112.5">
       <SettingColor
         title="Background"
         color={background}
@@ -50,8 +50,8 @@ function LocalSettingColor({
   setColor: (color: Color) => void;
 }) {
   return (
-    <div className="bg-black/50 p-4 rounded-2xl border border-white/0 hover:border-white">
-      <p className="pb-4 mb-2 text-lg font-bold">{title}</p>
+    <div className="bg-white/20 p-4 rounded-2xl border border-white/0 hover:border-white">
+      <p className="pb-1 mb-2 text-lg font-bold text-center">{title}</p>
       <SketchPicker
         styles={{
           default: {

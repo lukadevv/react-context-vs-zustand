@@ -1,19 +1,70 @@
 import React, { useMemo } from "react";
 import { cn } from "../../utilities/cn";
-import type { AppContextType, Avatar } from "../../types/app-context.type";
+import type {
+  AppContextType,
+  Avatar as AvatarType,
+} from "../../types/app-context.type";
 
 export function Content({
-  avatar,
+  avatarChildren,
+  nameChildren,
   background,
-  name,
-  text,
-  fontSize,
+  descriptionChildren,
 }: {
-  name: AppContextType["user"]["name"];
-  avatar: AppContextType["user"]["avatar"];
   background: AppContextType["theme"]["background"];
-  text: AppContextType["theme"]["text"];
+  avatarChildren: React.ReactNode;
+  nameChildren: React.ReactNode;
+  descriptionChildren: React.ReactNode;
+}) {
+  return (
+    <article
+      style={{
+        backgroundColor: background,
+      }}
+      className={"h-142 overflow-y-auto rounded-sm p-2 border"}
+    >
+      {nameChildren}
+      {avatarChildren}
+      {descriptionChildren}
+    </article>
+  );
+}
+
+export const Avatar = React.memo(LocalAvatar);
+export const Name = React.memo(LocalName);
+export const Description = React.memo(LocalDescription);
+
+function LocalAvatar({ avatar }: { avatar: AvatarType }) {
+  return (
+    <div className="w-full flex items-center justify-center py-2">
+      <div
+        key={avatar}
+        className="hover:scale-120 transition-transform cursor-not-allowed flex items-center justify-center w-12.5 h-12.5 bg-black/40 rounded-xl border"
+      >
+        <i className={cn("fa-solid text-2xl", avatar)} />
+      </div>
+    </div>
+  );
+}
+
+function LocalName({ text, name }: { text: string; name: string }) {
+  return (
+    <p
+      style={{
+        color: text,
+      }}
+    >
+      Hello <span className="text-blue-400 font-bold">{name}</span>!
+    </p>
+  );
+}
+
+function LocalDescription({
+  fontSize,
+  text,
+}: {
   fontSize: AppContextType["fontSize"];
+  text: AppContextType["theme"]["text"];
 }) {
   const fontSizeClassName = useMemo(() => {
     switch (fontSize) {
@@ -95,76 +146,41 @@ export function Content({
   }, [fontSize]);
 
   return (
-    <article
-      style={{
-        backgroundColor: background,
-      }}
+    <p
       className={cn(
-        "h-155 overflow-y-auto rounded-sm p-2 border",
+        "text-sm leading-relaxed space-y-5 pt-4",
         fontSizeClassName
       )}
+      style={{
+        color: text,
+      }}
     >
-      <p
-        style={{
-          color: text,
-        }}
-      >
-        Hello <span className="text-blue-400 font-bold">{name}</span>!
-      </p>
-      <Avatar avatar={avatar} />
-      <p
-        className={cn(
-          "text-sm leading-relaxed space-y-5 pt-4",
-          fontSizeClassName
-        )}
-        style={{
-          color: text,
-        }}
-      >
-        <span className="block">
-          React Context is a native React feature designed mainly for dependency
-          injection and low-frequency global data. While it works well for small
-          apps or static values like theme, locale, or authentication,
-          performance issues arise when it is used for frequently changing
-          state.
-        </span>
-        <span className="block">
-          The main limitation of Context is its update propagation model: when
-          the Provider value changes, all consuming components re-render, even
-          if they don’t rely on the changed part of the state. Although
-          memoization and splitting contexts can reduce this, they increase
-          complexity and rarely eliminate all unnecessary renders.
-        </span>
-        <span className="block">
-          Zustand takes a different approach by using an external store with
-          selective subscriptions. Components only re-render when the specific
-          slice of state they depend on changes, which significantly improves
-          performance and predictability in larger or more dynamic applications.
-        </span>
-        <span className="block">
-          Because of this architecture, Zustand scales better for
-          performance-critical use cases such as games, dashboards, and
-          real-time interfaces. Context remains ideal for simple, low-frequency
-          global data, while Zustand is generally the better choice for medium
-          to large applications that require fine-grained control over
-          re-rendering.
-        </span>
-      </p>
-    </article>
-  );
-}
-
-const Avatar = React.memo(LocalAvatar);
-
-function LocalAvatar({ avatar }: { avatar: Avatar }) {
-  return (
-    <div className="w-full flex items-center justify-center py-2">
-      <div
-        key={avatar}
-        className="hover:scale-120 transition-transform cursor-not-allowed flex items-center justify-center w-12.5 h-12.5 bg-black/40 rounded-xl border"
-      >
-        <i className={cn("fa-solid text-2xl", avatar)} />
-      </div>
-    </div>
+      <span className="block">
+        React Context is a native React feature designed mainly for dependency
+        injection and low-frequency global data. While it works well for small
+        apps or static values like theme, locale, or authentication, performance
+        issues arise when it is used for frequently changing state.
+      </span>
+      <span className="block">
+        The main limitation of Context is its update propagation model: when the
+        Provider value changes, all consuming components re-render, even if they
+        don't rely on the changed part of the state. Although memoization and
+        splitting contexts can reduce this, they increase complexity and rarely
+        eliminate all unnecessary renders.
+      </span>
+      <span className="block">
+        Zustand takes a different approach by using an external store with
+        selective subscriptions. Components only re-render when the specific
+        slice of state they depend on changes, which significantly improves
+        performance and predictability in larger or more dynamic applications.
+      </span>
+      <span className="block">
+        Because of this architecture, Zustand scales better for
+        performance-critical use cases such as games, dashboards, and real-time
+        interfaces. Context remains ideal for simple, low-frequency global data,
+        while Zustand is generally the better choice for medium to large
+        applications that require fine-grained control over re-rendering.
+      </span>
+    </p>
   );
 }

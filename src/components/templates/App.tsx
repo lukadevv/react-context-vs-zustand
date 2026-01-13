@@ -1,5 +1,3 @@
-import "../../styles/app.css";
-
 export function App({
   header,
   content,

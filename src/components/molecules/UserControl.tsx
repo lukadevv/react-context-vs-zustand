@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type {
   AppContextType,
   AppReadContextType,
@@ -8,25 +8,32 @@ import { cn } from "../../utilities/cn";
 
 export function UserControl({
   avatar,
-  name,
+  name: initialName,
   setAvatar,
-  setName,
+  setName: initialSetName,
 }: {
   name: AppReadContextType["user"]["name"];
   avatar: AppReadContextType["user"]["avatar"];
   setName: AppContextType["setName"];
   setAvatar: AppContextType["setAvatar"];
 }) {
+  const [name, setName] = useState<string>(initialName);
+
+  useEffect(() => {
+    initialSetName(name);
+  }, [initialSetName, name]);
+
   return (
     <section className="flex flex-col items-start justify-start gap-4 bg-black/50 rounded-2xl p-4 border">
-      <div>
+      <div className="w-full">
         <input
-          placeholder={"Your name"}
+          placeholder="Your name"
           value={name}
-          onChange={() => setName(name)}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full px-4 py-2 rounded-lg border border-neutral-300 text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
         />
       </div>
-      <div className="flex gap-2 bg-black p-2 rounded-sm border overflow-x-auto">
+      <div className="flex gap-2 bg-black p-2 rounded-sm border overflow-x-auto max-w-full">
         <IconButton avatar="fa-user" selected={avatar} setAvatar={setAvatar} />
         <IconButton avatar="fa-house" selected={avatar} setAvatar={setAvatar} />
         <IconButton

@@ -1,0 +1,72 @@
+body::before {
+  content: " ";
+  position: fixed;
+  z-index: -60;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.823);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -61;
+  inset: 0;
+  background: url(../assets/background.webp) center/cover no-repeat;
+  filter: saturate(1.8);
+  animation: satPulse 3s ease-in-out infinite alternate;
+}
+
+.react-context-app {
+  box-shadow: #38bdf8 0 0 14px;
+}
+
+.zustand-app {
+  box-shadow: #e879f9 0 0 14px;
+}
+
+.react-context-word {
+  color: #38bdf8;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.6),
+    0 0 32px rgba(56, 189, 248, 0.3);
+  animation: rcGlow 3.5s ease-in-out infinite alternate;
+}
+
+.zustand-word {
+  color: #e879f9;
+  text-shadow: 0 0 12px rgba(232, 121, 249, 0.6),
+    0 0 32px rgba(232, 121, 249, 0.35);
+  animation: ztPulse 850ms ease-in-out infinite alternate;
+}
+
+@keyframes rcGlow {
+  0% {
+    filter: saturate(1.2) brightness(1);
+  }
+  100% {
+    filter: saturate(2) brightness(1.15);
+  }
+}
+
+@keyframes ztPulse {
+  0% {
+    filter: saturate(1.3) brightness(1);
+  }
+  100% {
+    filter: saturate(2.2) brightness(1.2);
+  }
+}
+
+@keyframes satPulse {
+  0% {
+    filter: saturate(1.4) hue-rotate(-6deg);
+  }
+  50% {
+    filter: saturate(2.1) hue-rotate(4deg);
+  }
+  100% {
+    filter: saturate(1.6) hue-rotate(-4deg);
+  }
+}
