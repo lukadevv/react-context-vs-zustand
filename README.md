@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# React Context vs Zustand — Render Performance Experiment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **side-by-side performance experiment** that compares how **React Context API** and **Zustand** behave in terms of **component re-rendering** under identical UI and interaction conditions.
 
-Currently, two official plugins are available:
+The goal is not to benchmark raw speed, but to **visually and practically demonstrate how state propagation affects render scope** in real React component trees.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🎯 Purpose
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Both implementations render the **same UI**, use the **same components**, and expose the **same interactions** (sliders, toggles, user settings, etc.).
 
-## Expanding the ESLint configuration
+The **only difference** between the two sides is **how state is consumed**:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React Context** uses a single provider and shared state.
+- **Zustand** uses granular selectors subscribed at the **leaf component level**.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This allows you to observe:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Which components re-render
+- How far renders propagate
+- How different architectural choices affect render isolation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧠 Key Concept Demonstrated
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### React Context
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Context updates are **broadcast** to all consumers of the provider.
+- Even if a component only uses a small slice of state, it still re-renders when the provider value changes.
+- Optimizations require provider splitting or additional patterns.
+
+### Zustand
+
+- Components subscribe via **selectors**.
+- Only components that depend on the changed state re-render.
+- State updates are **localized** and do not propagate through the tree.
+
+This project intentionally uses **leaf-level subscriptions** in the Zustand version to demonstrate its best-case render behavior.
+
+## 🛠 Tech Stack
+
+- React 19
+- TypeScript
+- Zustand 5
+- Vite
+- Tailwind CSS
+- react-scan
+- ESLint
+
+---
